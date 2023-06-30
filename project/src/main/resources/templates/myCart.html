@@ -1,0 +1,25 @@
+<!-- ... -->
+<table>
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Brand Name</th>
+        <th>Model Number</th>
+        <th>Price</th>
+        <th>Color</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="cartItem : ${cartItems}">
+        <td th:text="${cartItem.productName}"></td>
+        <td th:text="${cartItem.brandName}"></td>
+        <td th:text="${cartItem.modelNo}"></td>
+        <td th:text="${cartItem.price}"></td>
+        <td th:text="${cartItem.color}"></td>
+        <td><img th:src="${cartItem.image_url}" alt="Product Image"width="200" height="200"></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- ... -->
+      
+  

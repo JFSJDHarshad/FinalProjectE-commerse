@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- <link href="project.css" rel="stylesheet" type="text/css"> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+  <script src="\js\addItembtn.js"></script>
+  <!-- <script src="\js\newPage.js"></script> -->
+  <!-- <script id="product-template" type="text/x-handlebars-template">
+    {{#each products}}
+    <div class="container-item ">
+      <div>
+      <img src="{{imageUrl}}" alt="{{name}}" width="200" height="200"></div>
+      <div id="details">
+      <h2>{{name}}</h2>
+      <p><strong>Brand:</strong> {{brand}}</p>
+      <p><strong>Model:</strong> {{model}}</p>
+      <p><strong>Price:</strong> &#8377; {{price}}</p>
+      <p><strong>Colours:</strong> {{colours}}</p>
+      
+      <br>
+      <a class="btn btn-outline-dark" href="" id="buy" style="background-color: orange;">Buy</a>
+      
+      </div>
+      
+    </div>
+    {{/each}}
+  </script> -->
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light " style="background-color: bisque;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="C:\Users\ACER\.mydrive\CSSworkspace\android-chrome-512x512.png" alt="hds favicaon" width="30px;">smartTech</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html" th:href="@{index}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="shop.html" th:href="@{shop}">Shop</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              About us
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="my-info.html" th:href="@{my-info}">Info</a></li>
+              <li><a class="dropdown-item" href="ourteam.html" th:href="@{ourteam}">Our Team</a></li>
+              <li><a class="dropdown-item" href="brand.html" th:href="@{brand}">Brand Partners</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Cart</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-but">
+            <a class="btn btn-outline-dark" href="signup.html" th:href="@{signup}">SignUp</a>
+          </li>
+          <li class="nav-but">
+            <a class="btn btn-outline-dark" href="login.html"th:href="@{login}" style="margin-left: 4px;">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="head">
+  <h1><strong>Product List</strong></h1></div>
+
+  <div class="container"> 
+  <div id="productDetails" class="container-inner">
+    <!-- <form action="/productlist" method="post"> -->
+    <div class="container-item " th:each="product : ${products}">
+      <div><img th:src="${product.image_url}" alt="Product Image"width="200" height="200"></div>
+        <div id="details">
+           <!-- <input type="hidden" name="product_id" value="auto_generated_id"> -->
+            <input type="hidden" name="product_name" value="">
+            <input type="hidden" name="brand_name" value="">
+            <input type="hidden" name="model_no" value="">
+            <input type="hidden" name="price" value="">
+            <input type="hidden" name="collor" value="">
+            <input type="hidden" name="image_url" value="">
+
+
+      <h2 th:text="${product.product_name}"></h2>
+      <strong><p th:text=" 'Brand: '+${product.brand_name}"></p></strong>
+      <strong><p th:text="'Model: '+${product.model_no}"></p></strong>
+      <strong><p th:text="'Price:  &#8377; '+${product.price}"></p></strong>
+      <strong><p th:text="'Colours: '+${product.collor}"></p></strong>
+      <br>
+      <a class="btn btn-outline-dark" href="/add-to-cart?id=${product.id}" id="buy" style="background-color: orange;">Add to Cart</a>
+      <a class="btn btn-outline-dark" href="" id="buy" style="background-color: orange;">Buy</a>
+      <!-- <a class="btn btn-outline-dark" href="/delete/${product.product_id}" id="buy" style="background-color: red;">Delete Item</a> -->
+      <!-- <a class="btn btn-outline-dark" href="/delete/${#numbers.formatDecimal(product.product_id)}" id="buy" style="background-color: red;">Delete Item</a> -->
+
+    </div>
+  </div>
+<!-- </form> -->
+  <!-- </div> -->
+  
+    <!-- <div id="productDetails" class="container-inner"> -->
+       <!-- <form action="/add-to-cart" method="post">
+        <div class="container-item">
+          <div><img src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/6/x/j/-original-imaghxejqvpwfqh2.jpeg?q=70" alt="Product Image" width="200" height="200"></div>
+          <div id="details">
+             <input type="hidden" name="productId" value="auto_generated_id"> 
+            <input type="hidden" name="product_name" value="APPLE iPhone 14 Pro Max">
+            <input type="hidden" name="brand_name" value="Apple">
+            <input type="hidden" name="model_no" value="Adgs43">
+            <input type="hidden" name="price" value="177999">
+            <input type="hidden" name="collor" value="Blue, Black">
+            <input type="hidden" name="image_url" value="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/6/x/j/-original-imaghxejqvpwfqh2.jpeg?q=70">
+      
+            <h2>APPLE iPhone 14 Pro Max</h2>
+            <p><strong>Brand: Apple</strong></p>
+            <p><strong>Model: Adgs43</strong></p>
+            <p><strong>Price:</strong> &#8377; 177999</p>
+            <p><strong>Colors: Blue, Black</strong></p>
+            <br>
+            <a class="btn btn-outline-dark" href="/add-to-cart?id=${product.id}" id="buy" style="background-color: orange;">Add to Cart</a>
+            <a class="btn btn-outline-dark" href="" id="buy" style="background-color: orange;">Buy</a>
+          </div>
+        </div>
+      </form> -->
+
+ <!--  <div class="container-item">
+      <div><img src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/6/x/j/-original-imaghxejqvpwfqh2.jpeg?q=70" alt="Product Image"width="200" height="200"></div>
+        <div id="details">
+      <h2>APPLE iPhone 14 Pro Max</h2>
+      <p><strong>Brand: Apple</strong></p>
+      <p><strong>Model: Adgs43</strong></p>
+      <p><strong>Price:</strong> &#8377; 177999</p>
+      <p th:text="${product.collor}"><strong>Colours: Blue, Black</strong></p>
+      <br>
+      <a class="btn btn-outline-dark" href="" id="buy" style="background-color: orange;">Add To Cart</a>
+      <a class="btn btn-outline-dark" href="" id="buy" style="background-color: orange;">Buy</a>
+    </div>
+  </div>
+  <div class="container-item">
+    <div><img src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/6/x/j/-original-imaghxejqvpwfqh2.jpeg?q=70" alt="Product Image"width="200" height="200"></div>
+      <div id="details">
+    <h2>APPLE iPhone 14 Pro Max</h2>
+    <p><strong>Brand: Apple</strong></p>
+    <p><strong>Model: Adgs43</strong></p>
+    <p><strong>Price:</strong> &#8377; 177999</p>
+    <p th:text="${product.collor}"><strong>Colours: Blue, Black</strong></p>
+    <br>
+    <a class="btn btn-outline-dark" href="" id="buy" style="background-color: orange;">Add To Cart</a>
+    <a class="btn btn-outline-dark" href="" id="buy" style="background-color: orange;">Buy</a>
+  </div>
+</div>
+
+
+<div class="container-item " th:each="product : ${products}">
+  <div><img th:src="${product.image_url}" alt="Product Image"width="200" height="200"></div>
+    <div id="details">
+  <h2 th:text="${product.product_name}"></h2>
+  <p th:text="${product.brand_name}"><strong>Brand:</strong></p>
+  <p th:text="${product.model_no}"><strong>Model:</strong></p>
+  <p th:text="${product.price}"><strong>Price:</strong> &#8377; </p>
+  <p th:text="${product.collor}"><strong>Colours:</strong></p>
+  <br>
+  <a class="btn btn-outline-dark" href="" id="buy" style="background-color: orange;">Add To Cart</a>
+      <a class="btn btn-outline-dark" href="" id="buy" style="background-color: orange;">Buy</a>
+</div>
+</div> -->
+    </div>
+   
+   </div> 
+  <!-- <div><a class="btn btn-outline-dark" href="#" id="buttn">Add or Delete item</a></div> -->
+  
+  
+   
+</body>
+
+<!-- project.css -->
+<style>
+ 
+  body{
+    background-color: #f5f5f5;
+  }
+
+  #head h1 {
+    color: blue;
+    text-align: center;
+    /* padding-top: 70px; */
+  }
+
+ 
+
+  .container-inner{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .container-item {
+    
+    border: 2px solid black;
+    display: inline-flex;
+
+    margin:21px;
+    margin-bottom: 0px;
+    width: 600px;
+    background-color: #98EECC;
+  }
+
+  
+.container-item:hover
+{
+	transform: scale(1.1);
+}
+  #details {
+    margin: 40px;
+    padding-left: 10px;
+  }
+
+  .container-item h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .container-item p {
+    margin: 5px 0;
+  }
+
+  .container-item img {
+    display: block;
+    margin: 10px;
+    max-width: 100%;
+    height:300px; /* Added to maintain aspect ratio */
+  }
+
+  hr {
+    /* border: none; */
+    border-top: 2px solid black;
+    margin: 20px 0;
+  }
+
+  #buttn {
+    position:relative;
+    margin: 20px;
+    left: 48%;
+    /* transform: translateX(-50%); */
+  }
+  #buttn:hover
+{
+	transform: scale(1.4);
+  background-color: green;
+  
+}
+  #buy:hover{
+    transform: scale(1.3);
+  }
+</style>
+
+</html>
