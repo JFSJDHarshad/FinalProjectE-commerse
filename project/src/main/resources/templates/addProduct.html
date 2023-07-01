@@ -12,7 +12,7 @@
   <h1>Add Product</h1>
   <div class="container">
     <div class="container-inner">
-      <form id="inputForm" action="/shop" method="post">
+      <form id="addProductForm" action="/shop" method="post">
         <div class="container-item">
           <label for="pname">Product Name</label><br>
           <input type="text" id="pname" required name="product_name">
@@ -36,7 +36,7 @@
         <div class="container-item"> 
           <label for="imageUrl">Product Image URL</label><br>
           <input type="text" id="imageUrl" name="image_url">
-          <!-- required pattern="^(https?:\/\/.*\.(?:png|jpg|jpeg|gif))$" -->
+          
         </div>
         <div class="container-item">
           <button type="submit">Add Item</button>
@@ -44,8 +44,8 @@
       </form>
     </div>
   </div>
-
+  <!-- <script th:src="@{addProductValidation.js}"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-  <script src="project1.js"></script>
+  <!-- <script src="project1.js"></script> -->
 </body>
 </html>

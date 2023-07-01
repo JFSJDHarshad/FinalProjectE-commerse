@@ -16,16 +16,16 @@ public class CartController {
 
 
   @PostMapping("/add-to-cart")
-  public String addToCart(@RequestParam("productId") Long productId,
+  public String addToCart(@RequestParam("productId") Integer productId,
                           @RequestParam("product_name") String productName,
                           @RequestParam("brand_name") String brandName,
                           @RequestParam("model_no") String modelNo,
-                          @RequestParam("price") double price,
+                          @RequestParam("price") Integer price,
                           @RequestParam("collor") String color,
                           @RequestParam("image_url") String image) {
     
     // Create a new cart item entity
-    Cart cartItem = new Cart(productId, productName, brandName, modelNo, price, color,image);
+    Cart cartItem = new Cart(productId,productName,brandName,modelNo,price,color,image);
     
     // Save the cart item to the database
     cartRepo.save(cartItem);

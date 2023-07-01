@@ -20,7 +20,9 @@ public class Cart {
     private String collor;
     private String image_url;
     
-    public Cart(Long productId2, String productName, String brandName, String modelNo, double price2, String color,
+   
+   
+    public Cart(Integer productId2, String productName, String brandName, String modelNo, Integer price2, String color,
             String image) {
     }
     // public Cart(Long id, String productId, String product_name, String brand_name, String model_no, Integer price,
