@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -18,11 +20,6 @@ public class OverAllController {
         return "login" ;
     }
     
-    // @RequestMapping("/shop")
-    // public String shopPage()
-    // {
-    //     return "shop" ;
-    // }
 
     @RequestMapping("/brand")
     public String brandPage()
@@ -41,6 +38,12 @@ public class OverAllController {
     {
         return "ourteam" ;
     }
+
+    @RequestMapping("/contact")
+    public String contactPage()
+    {
+        return "contact" ;
+    }
    
 
     @RequestMapping("/admin")
@@ -48,12 +51,19 @@ public class OverAllController {
     {
         return "adminLogin" ;
     }
-//    @GetMapping("/addProduct")
-//     public String adminaddproduct()
-//     {
-//         return "addProduct" ;
-//     }
 
+    @PostMapping("/submit-contact")
+    public String submitresponseMsg(Model model){
+        String msg="Thank you Your Response is Submited";
+        model.addAttribute("msg",msg );
+        return "thankyou";
+    }
+
+    // @GetMapping("/thankyou")
+    // public String responseMsg(){
+    //     return "thankyou";
+
+    // }
 
 
 }

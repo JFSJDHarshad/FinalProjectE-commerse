@@ -33,22 +33,21 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="my-info.html" th:href="@{my-info}">Info</a></li>
-              <li><a class="dropdown-item" href="ourteam.html" th:href="@{ourteam}">Our Team</a></li>
               <li><a class="dropdown-item" href="brand.html" th:href="@{brand}">Brand Partners</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Contact</a>
+            <a class="nav-link active" aria-current="page" href="contact.html" th:href="@{contact}">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Cart</a>
+            <a class="nav-link active" aria-current="page" href="myCart.html" th:href="@{myCart}">Cart</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-but">
+            <a class="btn btn-outline-dark" href="adminLogin.html" th:href="@{admin}">Admin</a>
+          </li>
           <li class="nav-but">
             <a class="btn btn-outline-dark" href="signup.html" th:href="@{signup}">SignUp</a>
           </li>
@@ -74,14 +73,20 @@
       <strong><p th:text="'Price:  &#8377; '+${product.price}"></p></strong>
       <strong><p th:text="'Colours: '+${product.collor}"></p></strong>
       <br>
-      <a class="btn btn-outline-dark" href="" id="buy" style="background-color: orange;">Add to Cart</a>
+      <form action="/add-to-cart" method="get">
+        <input type="hidden" name="product_id" th:value="${product.product_id}">
+      <!-- <a class="btn btn-outline-dark" href="" id="buy" style="background-color: orange;">Add to Cart</a> -->
+      <button type="submit" style="background-color: orange;">Add to Cart</button>
+                    </form>
       <a class="btn btn-outline-dark" href="" id="buy" style="background-color: orange;">Buy</a>
     </div>
   </div>
     </div>
    
    </div> 
-  
+   <footer>
+    <p class="contact-no">Contact Number: 9594764107</p>
+  </footer>
   
    
 </body>
@@ -106,6 +111,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
+    margin-bottom: 100px;
   }
 
   .container-item {
@@ -167,6 +173,21 @@
   #buy:hover{
     transform: scale(1.3);
   }
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.contact-no {
+  font-size: 16px;
+}
 </style>
 
 </html>

@@ -58,7 +58,7 @@ public class AdminController {
 
     //adding product
      @RequestMapping("/addProduct")
-    public String adminpController()
+    public String addProdoctPage()
     {
         return "addProduct";
     }
@@ -72,7 +72,7 @@ public class AdminController {
      @GetMapping("/productController")
     public String saveproductadmin(Model model){
         List<AddProduct> products=addProduct_Repo.findAll();
-        model.addAttribute("products", products);
+        model.addAttribute("products", products); 
         return "productController";
     }
 

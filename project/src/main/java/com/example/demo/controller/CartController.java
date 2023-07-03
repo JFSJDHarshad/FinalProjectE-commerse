@@ -1,35 +1,76 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.model.Cart;
-import com.example.demo.repository.CartRepo;
+import com.example.demo.model.AddProduct;
+import com.example.demo.repository.AddProduct_Repo;
 
 @Controller
 public class CartController {
   
   @Autowired
-  private CartRepo cartRepo;
+  private AddProduct_Repo addProduct_Repo;
+  
 
 
-  @PostMapping("/add-to-cart")
-  public String addToCart(@RequestParam("productId") Integer productId,
-                          @RequestParam("product_name") String productName,
-                          @RequestParam("brand_name") String brandName,
-                          @RequestParam("model_no") String modelNo,
-                          @RequestParam("price") Integer price,
-                          @RequestParam("collor") String color,
-                          @RequestParam("image_url") String image) {
-    
-    // Create a new cart item entity
-    Cart cartItem = new Cart(productId,productName,brandName,modelNo,price,color,image);
-    
-    // Save the cart item to the database
-    cartRepo.save(cartItem);
-    
-    return "redirect:/myCart.html"; // Redirect to the cart page
-  }
+  private List<AddProduct> cartItems = new ArrayList<>();
+
+  @GetMapping("/myCart")
+    public String viewCart(Model model) {
+         model.addAttribute("totalAmount", calculateTotalAmount());
+        if(calculateTotalAmount()!=0){
+        model.addAttribute("cartItems", cartItems);
+        }
+        else{
+            
+        String empty="Your Cart Is Empty";
+            model.addAttribute("emptyCart", empty);
+        }
+        return "myCart";
+    }
+
+    @GetMapping("/add-to-cart")
+    public String addToCart(@RequestParam("product_id") Integer productId) {
+        AddProduct product = addProduct_Repo.findById(productId).orElse(null);
+        
+        if (product != null) {
+            cartItems.add(product);
+
+        }
+        return "redirect:/shop";
+    }
+
+     @GetMapping("/remove-from-cart")
+public String removeFromCart(@RequestParam("product_id") Integer productId) {
+    boolean removed = false;
+    for (AddProduct item : cartItems) {
+        if (item.getProduct_id().equals(productId)) {
+            cartItems.remove(item);
+            removed = true;
+            break;
+        }
+    }
+    if (removed) {
+        return "redirect:/myCart";
+    } else {
+        // Item not found in the cart
+        return "redirect:/myCart"; // or handle the error condition as desired
+    }
+}
+
+
+    private double calculateTotalAmount() {
+        double totalAmount = 0;
+        for (AddProduct item : cartItems) {
+            totalAmount += item.getPrice();
+        }
+        return totalAmount;
+    }
 }
